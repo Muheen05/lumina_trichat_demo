@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lumina - CRM Integration Demo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+      body { font-family: 'Inter', sans-serif; }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.1/",
+    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.555.0",
+    "react/": "https://aistudiocdn.com/react@^19.2.1/",
+    "react": "https://aistudiocdn.com/react@^19.2.1"
+  }
+}
+</script>
+</head>
+  <body>
+    <div id="root"></div>
+
+    <!-- TriChat REST API Integration -->
+    <script>
+      // TriChat REST API Integration
+      const TRICHAT_API_KEY = 'tc_7kk1la0t_1983124612192350556522468298';
+      const TRICHAT_BASE_URL = 'http://localhost:8080/api/v1';
+
+      console.log("TriChat Integration Loaded. Base URL:", TRICHAT_BASE_URL);
+
+      // Send a message
+      async function sendMessage(message, customerId) {
+        console.log(`[TriChat] Sending message to ${TRICHAT_BASE_URL}/messages`);
+        try {
+            const response = await fetch(`${TRICHAT_BASE_URL}/messages`, {
+                method: 'POST',
+                headers: {
+                'Authorization': `Bearer ${TRICHAT_API_KEY}`,
+                'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                message: message,
+                customerId: customerId,
+                widgetId: 'default'
+                })
+            });
+            
+            return await response.json();
+        } catch (e) {
+            console.error("TriChat API Error:", e);
+            throw e;
+        }
+      }
+
+      // Get conversation history
+      async function getConversation(customerId) {
+        const response = await fetch(`${TRICHAT_BASE_URL}/conversations/${customerId}`, {
+          headers: {
+            'Authorization': `Bearer ${TRICHAT_API_KEY}`
+          }
+        });
+        
+        return await response.json();
+      }
+
+      // Create a new customer
+      async function createCustomer(customerData) {
+        const response = await fetch(`${TRICHAT_BASE_URL}/customers`, {
+          method: 'POST',
+          headers: {
+            'Authorization': `Bearer ${TRICHAT_API_KEY}`,
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(customerData)
+        });
+        
+        return await response.json();
+      }
+    </script>
+  </body>
+</html>
