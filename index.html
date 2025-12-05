@@ -9,7 +9,7 @@
     <style>
       body { font-family: 'Inter', sans-serif; }
     </style>
-<script type="importmap">
+  <script type="importmap">
 {
   "imports": {
     "react": "https://aistudiocdn.com/react@^19.2.1",
@@ -21,11 +21,16 @@
 </script>
 </head>
   <body>
-    <div id="root"></div>
+    <div id="root">
+        <!-- Visual feedback if React fails to mount -->
+        <div style="height: 100vh; display: flex; align-items: center; justify-content: center; color: #64748b; font-family: sans-serif;">
+            Loading Demo App...
+        </div>
+    </div>
 
     <!-- React Entry Point for Vite -->
-    <!-- UPDATED: Changed from main.tsx to index.tsx to match your file name -->
-    <script type="module" src="/src/index.tsx"></script>
+    <!-- Updated to main.tsx which is the default for Vite projects -->
+    <script type="module" src="/src/main.tsx"></script>
 
     <!-- TriChat REST API Integration -->
     <script>
