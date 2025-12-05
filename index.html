@@ -12,16 +12,20 @@
   <script type="importmap">
 {
   "imports": {
+    "react": "https://aistudiocdn.com/react@^19.2.1",
     "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.1/",
-    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.555.0",
     "react/": "https://aistudiocdn.com/react@^19.2.1/",
-    "react": "https://aistudiocdn.com/react@^19.2.1"
+    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.555.0"
   }
 }
 </script>
 </head>
   <body>
     <div id="root"></div>
+
+    <!-- React Entry Point for Vite -->
+    <!-- NOTE: If your file in the 'src' folder is named 'index.tsx', change the src below to "/src/index.tsx" -->
+    <script type="module" src="/src/main.tsx"></script>
 
     <!-- TriChat REST API Integration -->
     <script>
