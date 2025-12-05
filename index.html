@@ -9,7 +9,7 @@
     <style>
       body { font-family: 'Inter', sans-serif; }
     </style>
-  <script type="importmap">
+<script type="importmap">
 {
   "imports": {
     "react": "https://aistudiocdn.com/react@^19.2.1",
@@ -23,14 +23,26 @@
   <body>
     <div id="root">
         <!-- Visual feedback if React fails to mount -->
-        <div style="height: 100vh; display: flex; align-items: center; justify-content: center; color: #64748b; font-family: sans-serif;">
-            Loading Demo App...
+        <div id="loading-msg" style="height: 100vh; display: flex; align-items: center; justify-content: center; color: #64748b; font-family: sans-serif; flex-direction: column; gap: 10px;">
+            <div>Loading Demo App...</div>
+            <div style="font-size: 0.8em; color: #94a3b8;">(If this persists, check console for errors)</div>
         </div>
     </div>
 
     <!-- React Entry Point for Vite -->
-    <!-- Updated to main.tsx which is the default for Vite projects -->
-    <script type="module" src="/src/main.tsx"></script>
+    <!-- Pointing to index.tsx as per file structure -->
+    <script type="module" src="/src/index.tsx"></script>
+    
+    <!-- Fallback error handler -->
+    <script>
+      setTimeout(() => {
+        const root = document.getElementById('root');
+        const loading = document.getElementById('loading-msg');
+        if (loading && document.body.contains(loading)) {
+           loading.innerHTML = '<div style="color:#ef4444; padding: 20px; text-align:center;">Failed to load React application.<br/><br/>Check your browser console (F12).<br/>Common issue: The file <b>/src/index.tsx</b> was not found.</div>';
+        }
+      }, 4000);
+    </script>
 
     <!-- TriChat REST API Integration -->
     <script>
