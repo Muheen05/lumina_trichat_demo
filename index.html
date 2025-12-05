@@ -25,13 +25,13 @@
         <!-- Visual feedback if React fails to mount -->
         <div id="loading-msg" style="height: 100vh; display: flex; align-items: center; justify-content: center; color: #64748b; font-family: sans-serif; flex-direction: column; gap: 10px;">
             <div>Loading Demo App...</div>
-            <div style="font-size: 0.8em; color: #94a3b8;">(If this persists, check console for errors)</div>
+            <div style="font-size: 0.8em; color: #94a3b8;">(If this persists, verify you are running 'npm run dev')</div>
         </div>
     </div>
 
     <!-- React Entry Point for Vite -->
-    <!-- Pointing to index.tsx as per file structure -->
-    <script type="module" src="/src/index.tsx"></script>
+    <!-- Switched to main.tsx which is the standard Vite default -->
+    <script type="module" src="/src/main.tsx"></script>
     
     <!-- Fallback error handler -->
     <script>
@@ -39,7 +39,7 @@
         const root = document.getElementById('root');
         const loading = document.getElementById('loading-msg');
         if (loading && document.body.contains(loading)) {
-           loading.innerHTML = '<div style="color:#ef4444; padding: 20px; text-align:center;">Failed to load React application.<br/><br/>Check your browser console (F12).<br/>Common issue: The file <b>/src/index.tsx</b> was not found.</div>';
+           loading.innerHTML = '<div style="color:#ef4444; padding: 20px; text-align:center; max-width: 600px; margin: 0 auto; line-height: 1.6;"><strong>Failed to load React application.</strong><br/><br/>1. Ensure you are running <code>npm run dev</code>.<br/>2. Check that <code>src/main.tsx</code> exists.<br/>3. Check your browser console (F12) for errors.</div>';
         }
       }, 4000);
     </script>
